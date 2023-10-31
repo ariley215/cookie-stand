@@ -94,7 +94,7 @@ function render(store) {
   cookieStandArticle.appendChild(heading);
   heading.textContent = store.name;
 
-  let hoursList = document.createElement(ul)
+  let hoursList = document.createElement('ul')
   cookieStandArticle.appendChild(hoursList);
 
   let cookiesSold = 0;
