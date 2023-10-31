@@ -12,7 +12,7 @@ const seattleLocation = {
   maxCust: 65,
   aveCookieSale: 6.3,
   cookieSalesArray = [],
-  
+  for (let i = 0; i >=  )
   cookieSalesArray.unshift(1) = aveCookieSale,
   console.log(cookieSalesArray)
   generateCust: function () {
@@ -28,7 +28,7 @@ seattleLocation.generateCust();
 // console.log(seattleLocation.aveCookieSale);
 
 
-
+ 
 
 
 
