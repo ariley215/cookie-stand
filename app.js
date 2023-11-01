@@ -1,27 +1,12 @@
 'use strict';
 // global function for all object literals to use
 // my randomInRange function
+// estimate sales with random in range function
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-
 
 function randomCustNumber(minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust + 1)) + minCust;
 }
-// create separate JS object literals for each shop location
-// object literal for Seattle
-// worked with chatGPT and  Diana
-const seattleLocation = {
-  store: 'seattle',
-  minCust: 23,
-  maxCust: 65,
-  aveCookies: 6.3,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
-}
-
-// 
 function estimateSales(store) {
   const salesArray = [];
   for (let i = 0; i < hours.length; i++) {
@@ -34,65 +19,34 @@ function estimateSales(store) {
   return salesArray;
 }
 
-seattleLocation.estimate();
+// cookie store constructor
 
-// tokyo object
-const tokyoLocation = {
-  store: 'Tokyo',
-  minCust: 3,
-  maxCust: 24,
-  aveCookies: 1.2,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
+function CookieStore(store, minCust, maxCust, aveCookies,){
+  this.store = store,
+  this.minCust = minCust,
+  this.maxCust = maxCust,
+  this.aveCookies = aveCookies,
+  this.salesArray = estimateSales(this);
 }
-tokyoLocation.estimate();
-
-// Dubai object
-const dubaiLocation = {
-  store: 'Dubai',
-  minCust: 11,
-  maxCust: 38,
-  aveCookies: 13.7,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
+// estimate method as prototype method
+CookieStore.prototype.estimateSales = function() {
+  this.salesArray = estimateSales(this);
 }
 
-dubaiLocation.estimate ();
+const seattleLocation = new CookieStore('Seattle', 23, 65, 6.3);
+seattleLocation.estimateSales();
 
-// paris object
-const parisLocation = {
-  store: 'Paris',
-  minCust: 20,
-  maxCust: 38,
-  aveCookies: 2.3,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
-}
-parisLocation.estimate();
+const dubaiLocation = new CookieStore('Dubai', 11,38, 2.3)
+dubaiLocation.estimateSales ();
 
-// lima object
-const limaLocation = {
-  store: 'Lima',
-  minCust: 2,
-  maxCust: 16,
-  aveCookies: 4.6,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
-}
-limaLocation.estimate();
+const tokyoLocation = new CookieStore('Tokyo', 3, 24, 1.2);
+tokyoLocation.estimateSales();
 
+const parisLocation = new CookieStore('Lima', 2, 16, 4.6);
+parisLocation.estimateSales();
 
-
-const container = document.getElementById('root');
-// consider a function that could do this
+const limaLocation = new CookieStore('Lima', 2, 16, 4.6);
+limaLocation.estimateSales();
 
 function render(store) {
   let cookieStandArticle = document.createElement('article');
@@ -124,6 +78,8 @@ const totalInfo = `Total: ${cookiesSold} cookies sold`;
 totalCookies.textContent = totalInfo;
 
 }
+
+const container = document.getElementById('root');
 // invoking each location []'
 
 render(seattleLocation);
@@ -132,23 +88,16 @@ render(dubaiLocation);
 render(parisLocation);
 render(limaLocation);
 
-function CookieStores(store, minCust, maxCust, aveCookies,){
-  this.store = store
-  this.minCust = minCust
-  this.maxCust = maxCust
-  this.aveCookies = []
-  this.salesArray = estimateSales(this);
-  this.estimate = this estimateSales();
-}
 
-CookieStores.prototype.estimateSales = function() {
+
   
-// // const salesArray = [];
+// const salesArray = [];
 //   for (let i = 0; i < hours.length; i++) {
 //     const numCustomers = randomCustNumber(store.minCust, store.maxCust);
 //     const hourSales = Math.ceil(numCustomers * store.aveCookies)
 //     salesArray.push(hourSales);
 // }
+
 
 const tableElem = document.createElement('table');
   articleElem.appendChild(tableElem);
@@ -156,6 +105,40 @@ const tableElem = document.createElement('table');
 const headerRow = document.createElement('tr')
   tableElem.appendChild(headerRow);
 
-const hourCell = document.createElement('th')
+const hourHeaderCell = document.createElement('th')
   headerRow.appendChild(hourCell);
-  hour
+  hourHeaderCell.textcontent = 
+  for( let i = 0; hours.length - 1; i++
+    )
+
+  
+  // add the table
+
+
+
+
+  const dogsHeaderCell = document.createElement('th');
+  headerRow.appendChild(dogsHeaderCell);
+  dogsHeaderCell.textContent = "Dogs";
+
+  const catsHeaderCell = document.createElement('th');
+  headerRow.appendChild(catsHeaderCell);
+  catsHeaderCell.textContent = "Other Cats";
+
+  // add data row
+  const dataRow = document.createElement('tr');
+  tableElem.appendChild(dataRow);
+
+  // add data cells
+  const kidsDataCell = document.createElement('td');
+  dataRow.appendChild(kidsDataCell);
+  kidsDataCell.textContent = this.isGoodWithKids;
+
+  const dogsDataCell = document.createElement('td');
+  dataRow.appendChild(dogsDataCell);
+  dogsDataCell.textContent = this.isGoodWithDogs;
+
+  const catsDataCell = document.createElement('td');
+  dataRow.appendChild(catsDataCell);
+  catsDataCell.textContent = this.isGoodWithCats;
+
