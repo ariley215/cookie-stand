@@ -131,6 +131,15 @@ render(dubaiLocation);
 render(parisLocation);
 render(limaLocation);
 
+function CookieStores(store, minCust, maxCust, aveCookies,){
+  this.store = store
+  this.minCust = minCust
+  this.maxCust = maxCust
+  this.aveCookies = []
+  this.salesArray = []
+  this.estimate = this.
+}
 
-
-
+CookieStores.prototype.estimateSales = function() {
+  return ()
+}
