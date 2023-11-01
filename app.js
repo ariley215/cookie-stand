@@ -124,6 +124,7 @@ const totalInfo = `Total: ${cookiesSold} cookies sold`;
 totalCookies.textContent = totalInfo;
 
 }
+// invoking each location []'
 
 render(seattleLocation);
 render(tokyoLocation);
@@ -136,10 +137,21 @@ function CookieStores(store, minCust, maxCust, aveCookies,){
   this.minCust = minCust
   this.maxCust = maxCust
   this.aveCookies = []
-  this.salesArray = []
-  this.estimate = this.
+  this.salesArray = estimateSales(this);
+  this.estimate = this estimateSales();
 }
 
 CookieStores.prototype.estimateSales = function() {
-  return ()
+  
+
 }
+
+const tableElem = document.createElement('table');
+  articleElem.appendChild(tableElem);
+
+const headerRow = document.createElement('tr')
+  tableElem.appendChild(headerRow);
+
+const hourCell = document.createElement('th')
+  headerRow.appendChild(hourCell);
+  hour
