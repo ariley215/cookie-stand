@@ -143,8 +143,12 @@ function CookieStores(store, minCust, maxCust, aveCookies,){
 
 CookieStores.prototype.estimateSales = function() {
   
-
-}
+// // const salesArray = [];
+//   for (let i = 0; i < hours.length; i++) {
+//     const numCustomers = randomCustNumber(store.minCust, store.maxCust);
+//     const hourSales = Math.ceil(numCustomers * store.aveCookies)
+//     salesArray.push(hourSales);
+// }
 
 const tableElem = document.createElement('table');
   articleElem.appendChild(tableElem);
