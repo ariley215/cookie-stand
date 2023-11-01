@@ -26,16 +26,19 @@ function estimateSales(store) {
   const salesArray = [];
   for (let i = 0; i < hours.length; i++) {
     const numCustomers = randomCustNumber(store.minCust, store.maxCust);
-    const hourSales = Math.ceil(numCustomers * store.aveCookiePerSale)
+    const hourSales = Math.ceil(numCustomers * store.aveCookies)
     salesArray.push(hourSales);
 
+
   }
+  return salesArray;
 }
 
 seattleLocation.estimate();
 
-
+// tokyo object
 const tokyoLocation = {
+  store: 'Tokyo',
   minCust: 3,
   maxCust: 24,
   aveCookies: 1.2,
@@ -48,6 +51,7 @@ tokyoLocation.estimate();
 
 // Dubai object
 const dubaiLocation = {
+  store: 'Dubai',
   minCust: 11,
   maxCust: 38,
   aveCookies: 13.7,
@@ -59,7 +63,9 @@ const dubaiLocation = {
 
 dubaiLocation.estimate ();
 
+// paris object
 const parisLocation = {
+  store: 'Paris',
   minCust: 20,
   maxCust: 38,
   aveCookies: 2.3,
@@ -70,7 +76,9 @@ const parisLocation = {
 }
 parisLocation.estimate();
 
+// lima object
 const limaLocation = {
+  store: 'Lima',
   minCust: 2,
   maxCust: 16,
   aveCookies: 4.6,
@@ -103,21 +111,20 @@ function render(store) {
     let salesItem = document.createElement('li');
     hoursList.appendChild(salesItem);
     let cookiePerHour = store.salesArray[i];
+    console.log (store.salesArray[i]);
     cookiesSold += cookiePerHour
-    let salesInfo = `${hours[i]}: ${store[i]} cookie`;
+    let salesInfo = `${hours[i]}: ${store.salesArray[i]} cookie`;
     salesItem.textContent = salesInfo;
   }
 
 //total line
-
-
-
 const totalCookies = document.createElement('li');
 hoursList.appendChild(totalCookies);
-const totalInfo = `Total: ${totalSold} cookies sold`;
+const totalInfo = `Total: ${cookiesSold} cookies sold`;
 totalCookies.textContent = totalInfo;
 
 }
+// invoking each location []'
 
 render(seattleLocation);
 render(tokyoLocation);
@@ -125,6 +132,26 @@ render(dubaiLocation);
 render(parisLocation);
 render(limaLocation);
 
+function CookieStores(store, minCust, maxCust, aveCookies,){
+  this.store = store
+  this.minCust = minCust
+  this.maxCust = maxCust
+  this.aveCookies = []
+  this.salesArray = estimateSales(this);
+  this.estimate = this estimateSales();
+}
 
+CookieStores.prototype.estimateSales = function() {
+  
 
+}
 
+const tableElem = document.createElement('table');
+  articleElem.appendChild(tableElem);
+
+const headerRow = document.createElement('tr')
+  tableElem.appendChild(headerRow);
+
+const hourCell = document.createElement('th')
+  headerRow.appendChild(hourCell);
+  hour
