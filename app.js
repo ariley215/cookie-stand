@@ -51,21 +51,21 @@ CookieStore.prototype.render = function() {
     let cookiePerHour = this.salesArray[i];
     cookiesSold += cookiePerHour
     let salesItem = LocationRow.insertCell(i + 1);
-    salesItem.textContent = `${hours[i]}: ${this.salesArray[i]} cookies`;
+    salesItem.textContent = `${this.salesArray[i]} cookies`;
   }
 
 //total line
-const totalCookies = document.createElement('tr');
-tableElem.appendChild(totalCookies);
-const totalInfo = `Total: ${cookiesSold} cookies sold`;
-totalCookies.textContent = totalInfo;
 
-}
 
 const container = document.getElementById('root');
 
 
+const totalCookies = document.createElement('td');
+LocationRow.appendChild(totalCookies);
+const totalInfo = `Total: ${cookiesSold} cookies sold`;
+totalCookies.textContent = totalInfo;
 
+}
 
 //  Location Header Cell
 function header() {
@@ -114,3 +114,4 @@ limaLocation.render();
 
 
   // create array of location objects for total bottom row
+
