@@ -35,7 +35,6 @@ CookieStore.prototype.estimateSales = function() {
 
 
 // create rows for each city with cookie data
-
 const tableElem = document.getElementById('data-table');
 
 
@@ -68,8 +67,7 @@ const container = document.getElementById('root');
 
 
 
-//  add table use functions and loops
-
+//  Location Header Cell
 function header() {
   const tableRow = document.createElement('tr')
   tableElem.appendChild(tableRow);
@@ -77,7 +75,7 @@ function header() {
   tableRow.appendChild(locationHeaderCell);
   locationHeaderCell.textContent = 'Locations'
 
-
+// List of hours header rows
   for (let i = 0; i < hours.length; i++){
     const hoursHeaderCell = document.createElement('th')
     tableRow.appendChild(hoursHeaderCell);
@@ -115,4 +113,4 @@ limaLocation.render();
 
 
 
-  
+  // create array of location objects for total bottom row
