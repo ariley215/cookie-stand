@@ -1,27 +1,12 @@
 'use strict';
 // global function for all object literals to use
 // my randomInRange function
+// estimate sales with random in range function
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-
 
 function randomCustNumber(minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust + 1)) + minCust;
 }
-// create separate JS object literals for each shop location
-// object literal for Seattle
-// worked with chatGPT and  Diana
-const seattleLocation = {
-  store: 'seattle',
-  minCust: 23,
-  maxCust: 65,
-  aveCookies: 6.3,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
-}
-
-// 
 function estimateSales(store) {
   const salesArray = [];
   for (let i = 0; i < hours.length; i++) {
@@ -34,128 +19,100 @@ function estimateSales(store) {
   return salesArray;
 }
 
-seattleLocation.estimate();
+// cookie store constructor
 
-// tokyo object
-const tokyoLocation = {
-  store: 'Tokyo',
-  minCust: 3,
-  maxCust: 24,
-  aveCookies: 1.2,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
+function CookieStore(store, minCust, maxCust, aveCookies){
+  this.store = store,
+  this.minCust = minCust,
+  this.maxCust = maxCust,
+  this.aveCookies = aveCookies,
+  this.salesArray = estimateSales(this);
 }
-tokyoLocation.estimate();
-
-// Dubai object
-const dubaiLocation = {
-  store: 'Dubai',
-  minCust: 11,
-  maxCust: 38,
-  aveCookies: 13.7,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
+// estimate method as prototype method
+CookieStore.prototype.estimateSales = function() {
+  this.salesArray = estimateSales(this);
 }
 
-dubaiLocation.estimate ();
 
-// paris object
-const parisLocation = {
-  store: 'Paris',
-  minCust: 20,
-  maxCust: 38,
-  aveCookies: 2.3,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
-}
-parisLocation.estimate();
+// create rows for each city with cookie data
 
-// lima object
-const limaLocation = {
-  store: 'Lima',
-  minCust: 2,
-  maxCust: 16,
-  aveCookies: 4.6,
-  salesArray: [],
-  estimate: function () {
-    this.salesArray = estimateSales(this);
-  }
-}
-limaLocation.estimate();
+const tableElem = document.getElementById('data-table');
 
 
+CookieStore.prototype.render = function() {
 
-const container = document.getElementById('root');
-// consider a function that could do this
-
-function render(store) {
-  let cookieStandArticle = document.createElement('article');
-  container.appendChild(cookieStandArticle);
-
-  let heading = document.createElement('h2');
-  cookieStandArticle.appendChild(heading);
-  heading.textContent = store.name;
-
-  let hoursList = document.createElement('ul')
-  cookieStandArticle.appendChild(hoursList);
+  const LocationRow = document.createElement('tr')
+  tableElem.appendChild(LocationRow);
+  const storeCell = document.createElement('th')
+  LocationRow.appendChild(storeCell);
 
   let cookiesSold = 0;
 
-  for (let i = 0; i < store.salesArray.length; i++) {
-    let salesItem = document.createElement('li');
-    hoursList.appendChild(salesItem);
-    let cookiePerHour = store.salesArray[i];
-    console.log (store.salesArray[i]);
+  for (let i = 0; i < this.salesArray.length; i++) {
+    let cookiePerHour = this.salesArray[i];
     cookiesSold += cookiePerHour
-    let salesInfo = `${hours[i]}: ${store.salesArray[i]} cookie`;
-    salesItem.textContent = salesInfo;
+    let salesItem = LocationRow.insertCell(i + 1);
+    salesItem.textContent = `${hours[i]}: ${this.salesArray[i]} cookies`;
   }
 
 //total line
-const totalCookies = document.createElement('li');
-hoursList.appendChild(totalCookies);
+const totalCookies = document.createElement('tr');
+tableElem.appendChild(totalCookies);
 const totalInfo = `Total: ${cookiesSold} cookies sold`;
 totalCookies.textContent = totalInfo;
 
 }
-// invoking each location []'
 
-render(seattleLocation);
-render(tokyoLocation);
-render(dubaiLocation);
-render(parisLocation);
-render(limaLocation);
+const container = document.getElementById('root');
 
-function CookieStores(store, minCust, maxCust, aveCookies,){
-  this.store = store
-  this.minCust = minCust
-  this.maxCust = maxCust
-  this.aveCookies = []
-  this.salesArray = estimateSales(this);
-  this.estimate = this estimateSales();
-}
 
-CookieStores.prototype.estimateSales = function() {
+
+
+//  add table use functions and loops
+
+function header() {
+  const tableRow = document.createElement('tr')
+  tableElem.appendChild(tableRow);
+  const locationHeaderCell = document.createElement('th')
+  tableRow.appendChild(locationHeaderCell);
+  locationHeaderCell.textContent = 'Locations'
+
+
+  for (let i = 0; i < hours.length; i++){
+    const hoursHeaderCell = document.createElement('th')
+    tableRow.appendChild(hoursHeaderCell);
+    hoursHeaderCell.textContent = hours[i]
+  }
   
-// // const salesArray = [];
-//   for (let i = 0; i < hours.length; i++) {
-//     const numCustomers = randomCustNumber(store.minCust, store.maxCust);
-//     const hourSales = Math.ceil(numCustomers * store.aveCookies)
-//     salesArray.push(hourSales);
-// }
+  const dailyTotalHeaderCell = document.createElement('th')
+  tableRow.appendChild(dailyTotalHeaderCell);
+  dailyTotalHeaderCell.textContent = 'Daily Location Total'
+}
+header();
 
-const tableElem = document.createElement('table');
-  articleElem.appendChild(tableElem);
+const seattleLocation = new CookieStore('Seattle', 23, 65, 6.3);
+seattleLocation.estimateSales();
 
-const headerRow = document.createElement('tr')
-  tableElem.appendChild(headerRow);
+const dubaiLocation = new CookieStore('Dubai', 11,38, 2.3)
+dubaiLocation.estimateSales ();
 
-const hourCell = document.createElement('th')
-  headerRow.appendChild(hourCell);
-  hour
+const tokyoLocation = new CookieStore('Tokyo', 3, 24, 1.2);
+tokyoLocation.estimateSales();
+
+const parisLocation = new CookieStore('Lima', 2, 16, 4.6);
+parisLocation.estimateSales();
+
+const limaLocation = new CookieStore('Lima', 2, 16, 4.6);
+limaLocation.estimateSales();
+
+
+// render each location
+seattleLocation.render();
+tokyoLocation.render();
+dubaiLocation.render();
+parisLocation.render();
+limaLocation.render();
+
+
+
+  
