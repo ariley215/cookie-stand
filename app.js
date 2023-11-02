@@ -4,6 +4,17 @@
 // estimate sales with random in range function
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
+const seattleLocation = new CookieStore('Seattle', 23, 65, 6.3);
+const dubaiLocation = new CookieStore('Dubai', 11,38, 2.3)
+const tokyoLocation = new CookieStore('Tokyo', 3, 24, 1.2);
+const parisLocation = new CookieStore('Lima', 2, 16, 4.6);
+const limaLocation = new CookieStore('Lima', 2, 16, 4.6);
+
+
+const locations = [seattleLocation, tokyoLocation, dubaiLocation, parisLocation, limaLocation]
+
+let cookiesSold = 0;
+
 function randomCustNumber(minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust + 1)) + minCust;
 }
@@ -38,6 +49,7 @@ CookieStore.prototype.estimateSales = function() {
 const tableElem = document.getElementById('data-table');
 
 
+
 CookieStore.prototype.render = function() {
 
   const LocationRow = document.createElement('tr')
@@ -45,27 +57,26 @@ CookieStore.prototype.render = function() {
   const storeCell = document.createElement('th')
   LocationRow.appendChild(storeCell);
 
-  let cookiesSold = 0;
+
 
   for (let i = 0; i < this.salesArray.length; i++) {
     let cookiePerHour = this.salesArray[i];
     cookiesSold += cookiePerHour
     let salesItem = LocationRow.insertCell(i + 1);
     salesItem.textContent = `${this.salesArray[i]} cookies`;
+
   }
-
+}
 //total line
-
-
-const container = document.getElementById('root');
-
+const container = document.getElementById('root')
 
 const totalCookies = document.createElement('td');
-LocationRow.appendChild(totalCookies);
+tableElem.appendChild(totalCookies);
 const totalInfo = `Total: ${cookiesSold} cookies sold`;
 totalCookies.textContent = totalInfo;
+  
 
-}
+
 
 //  Location Header Cell
 function header() {
@@ -88,20 +99,37 @@ function header() {
 }
 header();
 
-const seattleLocation = new CookieStore('Seattle', 23, 65, 6.3);
+function renderfooterRow(tableElem) {
+  const footerRow = document.createElement('tr');
+  tableElem.appendChild(footerRow);
+
+  const footerCell = document.createElement('th')
+  footerRow.appendChild(footerCell);
+  footerCell.textContent = 'Hourly Totals'
+
+  for (let i = 0; i < hours.length; i++) {
+    let hourlyTotal = 0
+    const totalCell = document.createElement('td')
+    footerRow.appendChild(totalCell);
+    
+    for (let a = 0; a < locations.length; a++){
+      hourlyTotal += locations[a].salesArray[i]
+    }
+totalCell.textContent = hourlyTotal;
+  }
+
+
+}
+
+
+
 seattleLocation.estimateSales();
-
-const dubaiLocation = new CookieStore('Dubai', 11,38, 2.3)
 dubaiLocation.estimateSales ();
-
-const tokyoLocation = new CookieStore('Tokyo', 3, 24, 1.2);
 tokyoLocation.estimateSales();
-
-const parisLocation = new CookieStore('Lima', 2, 16, 4.6);
 parisLocation.estimateSales();
-
-const limaLocation = new CookieStore('Lima', 2, 16, 4.6);
 limaLocation.estimateSales();
+
+
 
 
 // render each location
@@ -110,6 +138,8 @@ tokyoLocation.render();
 dubaiLocation.render();
 parisLocation.render();
 limaLocation.render();
+
+renderfooterRow(tableElem);
 
 
 
