@@ -76,15 +76,7 @@ dailyTotalCell.textContent = `${dailyTotal} cookies`;
 locationsDailyTotal += dailyTotal;
 }
 
-//total line
 const container = document.getElementById('root')
-
-const totalCookies = document.createElement('td');
-tableElem.appendChild(totalCookies);
-const totalInfo = `Total: ${cookiesSold} cookies sold`;
-totalCookies.textContent = totalInfo;
-  
-
 
 //  Location Header Cell
 function header() {
@@ -117,7 +109,7 @@ header();
 
 // creates footer row with totals 
 // adds daily location totals
-// adds total cookies across all stores
+// adds total cookies across all stores10
 function renderfooterRow(tableElem) {
   const footerRow = document.createElement('tr');
   tableElem.appendChild(footerRow);
