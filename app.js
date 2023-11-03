@@ -70,6 +70,7 @@ for (let i = 0; i < this.salesArray.length; i++) {
   salesItems.textContent = `${hourSales} cookies`;
 }
 const dailyTotalCell = locationRow.insertCell(this.salesArray.length + 1);
+dailyTotalCell.textContent = `${dailyTotal} cookie`;
   }
 //total line
 const container = document.getElementById('root')
