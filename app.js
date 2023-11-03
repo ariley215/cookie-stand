@@ -7,7 +7,7 @@ const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm',
 const seattleLocation = new CookieStore('Seattle', 23, 65, 6.3);
 const dubaiLocation = new CookieStore('Dubai', 11,38, 2.3)
 const tokyoLocation = new CookieStore('Tokyo', 3, 24, 1.2);
-const parisLocation = new CookieStore('Lima', 2, 16, 4.6);
+const parisLocation = new CookieStore('Paris', 2, 16, 4.6);
 const limaLocation = new CookieStore('Lima', 2, 16, 4.6);
 
 
@@ -52,21 +52,25 @@ const tableElem = document.getElementById('data-table');
 
 CookieStore.prototype.render = function() {
 
-  const LocationRow = document.createElement('tr')
-  tableElem.appendChild(LocationRow);
+  const locationRow = document.createElement('tr')
+  tableElem.appendChild(locationRow);
   const storeCell = document.createElement('th')
-  LocationRow.appendChild(storeCell);
+  locationRow.appendChild(storeCell);
+  storeCell.textContent = this.store;
 
+  let dailyTotal = 0;
+  
+for (let i = 0; i < this.salesArray.length; i++) {
+  const hourSales = this.salesArray[i];
+  cookiesSold += hourSales;
 
+  dailyTotal += hourSales;
 
-  for (let i = 0; i < this.salesArray.length; i++) {
-    let cookiePerHour = this.salesArray[i];
-    cookiesSold += cookiePerHour
-    let salesItem = LocationRow.insertCell(i + 1);
-    salesItem.textContent = `${this.salesArray[i]} cookies`;
-
-  }
+  const salesItems = locationRow.insertCell(i + 1);
+  salesItems.textContent = `${hourSales} cookies`;
 }
+const dailyTotalCell = locationRow.insertCell(this.salesArray.length + 1);
+  }
 //total line
 const container = document.getElementById('root')
 
@@ -77,7 +81,6 @@ totalCookies.textContent = totalInfo;
   
 
 
-
 //  Location Header Cell
 function header() {
   const tableRow = document.createElement('tr')
@@ -86,18 +89,27 @@ function header() {
   tableRow.appendChild(locationHeaderCell);
   locationHeaderCell.textContent = 'Locations'
 
+
 // List of hours header rows
   for (let i = 0; i < hours.length; i++){
     const hoursHeaderCell = document.createElement('th')
     tableRow.appendChild(hoursHeaderCell);
     hoursHeaderCell.textContent = hours[i]
   }
+
   
   const dailyTotalHeaderCell = document.createElement('th')
   tableRow.appendChild(dailyTotalHeaderCell);
   dailyTotalHeaderCell.textContent = 'Daily Location Total'
 }
+
+
+
+
+
+
 header();
+
 
 function renderfooterRow(tableElem) {
   const footerRow = document.createElement('tr');
@@ -143,5 +155,11 @@ renderfooterRow(tableElem);
 
 
 
-  // create array of location objects for total bottom row
+
+ //    // Locations cells
+  // for (let i = 0; i < locations.length; i++) {
+  //   const locationCell = document.createElement('td');
+  //   tableRow.appendChild(locationCell);
+  //   locationCell.textContent = locations[i].store;
+
 
