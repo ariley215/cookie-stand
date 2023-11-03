@@ -48,7 +48,8 @@ CookieStore.prototype.estimateSales = function() {
 // create rows for each city with cookie data
 const tableElem = document.getElementById('data-table');
 
-
+let locationsHourlyTotal = 0;
+let locationsDailyTotal = 0;
 
 CookieStore.prototype.render = function() {
 
@@ -63,15 +64,18 @@ CookieStore.prototype.render = function() {
 for (let i = 0; i < this.salesArray.length; i++) {
   const hourSales = this.salesArray[i];
   cookiesSold += hourSales;
-
-  dailyTotal += hourSales;
-
+  dailyTotal += hourSales; 
+  locationsHourlyTotal += hourSales;
   const salesItems = locationRow.insertCell(i + 1);
   salesItems.textContent = `${hourSales} cookies`;
 }
+
 const dailyTotalCell = locationRow.insertCell(this.salesArray.length + 1);
-dailyTotalCell.textContent = `${dailyTotal} cookie`;
-  }
+dailyTotalCell.textContent = `${dailyTotal} cookies`;
+
+locationsDailyTotal += dailyTotal;
+}
+
 //total line
 const container = document.getElementById('root')
 
@@ -111,7 +115,9 @@ function header() {
 
 header();
 
-
+// creates footer row with totals 
+// adds daily location totals
+// adds total cookies across all stores
 function renderfooterRow(tableElem) {
   const footerRow = document.createElement('tr');
   tableElem.appendChild(footerRow);
@@ -120,19 +126,28 @@ function renderfooterRow(tableElem) {
   footerRow.appendChild(footerCell);
   footerCell.textContent = 'Hourly Totals'
 
+  let locationsHourlyTotal = 0;
+
   for (let i = 0; i < hours.length; i++) {
-    let hourlyTotal = 0
-    const totalCell = document.createElement('td')
-    footerRow.appendChild(totalCell);
+    let hourlyTotal = 0;
     
     for (let a = 0; a < locations.length; a++){
       hourlyTotal += locations[a].salesArray[i]
     }
-totalCell.textContent = hourlyTotal;
+    locationsHourlyTotal += hourlyTotal;
+
+    const totalCell = document.createElement('td');
+    footerRow.appendChild(totalCell);
+    totalCell.textContent = hourlyTotal;
   }
 
+  
+const totalHourlySalesCell = document.createElement('td')
+footerRow.appendChild(totalHourlySalesCell);
+totalHourlySalesCell.textContent = locationsHourlyTotal + ' cookies';
 
 }
+
 
 
 
@@ -144,7 +159,6 @@ limaLocation.estimateSales();
 
 
 
-
 // render each location
 seattleLocation.render();
 tokyoLocation.render();
@@ -152,15 +166,7 @@ dubaiLocation.render();
 parisLocation.render();
 limaLocation.render();
 
+
 renderfooterRow(tableElem);
-
-
-
-
- //    // Locations cells
-  // for (let i = 0; i < locations.length; i++) {
-  //   const locationCell = document.createElement('td');
-  //   tableRow.appendChild(locationCell);
-  //   locationCell.textContent = locations[i].store;
 
 
