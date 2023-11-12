@@ -3,37 +3,55 @@
 <link rel="stylesheet" href="css/styles.css"> -->
 <!-- <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet"> -->
 <html>
-<title>Sales Data: Pat's Salmon Cookies</title>
+
+<head>
+  <title>Sales Data: Pat's Salmon Cookies</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-<header>
-<h1>Welcome to Pat's Salmon Cookies!</h1>
-<nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="sales.html">Sales Data</a></li>
-  </ul>
-</nav>
-</header>
+  <header>
+    <h1>Welcome to Pat's Salmon Cookies!</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sales.html">Sales Data</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<main>
-  <article>
-    <table id= "data-table">
-      
-    </table>
-    <ul>
-      
-    </ul>
-  </article>
-  <section id="root" class="content"></section>
-</main>
+  <main>
+    <form id="addCookieStore">
+      <fieldset>
+        <legend>Add a new location!</legend>
+        <label for="cookieStore">Location Name</label>
+        <input type="text" name="cookieStore" />
+        <label for="minCust">Minimum Customers Per Hour</label>
+        <input type="text" name="minCust" />
+        <label for="maxCust">Maximum Customers Per Hour</label>
+        <input type="text" name="maxCust" />
+        <label for="aveCookies">Average Cookie Per Sale</label>
+        <input type="text" name="aveCookies" />
+        <button type="text">Click here to add!</button>
+      </fieldset>
+    </form>
+    <article>
+      <table id="data-table">
 
-<footer>
-&copy; 2023 Pat's Salmon Cookies
-</footer>
+      </table>
+      <ul>
 
-<script src="app.js"></script>
+      </ul>
+    </article>
+    <section id="root" class="content"></section>
+    <script src="script.js"></script>
+  </main>
+
+  <footer>
+    &copy; 2023 Pat's Salmon Cookies
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 
 </html>
