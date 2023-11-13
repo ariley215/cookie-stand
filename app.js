@@ -213,9 +213,6 @@ limaLocation.render();
 
 renderfooterRow(tableElem);
 
-console.log('tableElem:', tableElem);
-console.log('listElem:', listElem);
-console.log('cookieStoreForm:', cookieStoreForm);
 
 
 

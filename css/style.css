@@ -1,0 +1,116 @@
+body {
+  font-family: 'Georgia', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+  background-color: black;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+nav {
+  background-color: salmon;
+  display: flex;
+  height: 50px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  margin-right: 25px;
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}  
+  
+a {
+  color:rgb(42, 14, 98);
+}
+
+h1 {
+  color: salmon;
+  font-family: 'Righteous';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 65px;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  border-bottom: 1px solid #000;
+
+}
+
+h2 {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  padding: 25px;
+}
+
+.content {
+  font-size: 18px;
+  margin-left: 25px;
+  margin-bottom: 30px;
+
+}
+
+fieldset {
+  border: 1px solid salmon;
+  margin: 20px;
+  position: realtive;
+
+}
+input {
+  border: 1px solid #000;
+}
+
+legend {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: salmon;
+  border: 1px;
+
+}
+label {
+  padding: 10px;
+  margin: 15px; 
+}
+table {
+  border: 1px solid #000;
+  padding: 30px;
+  margin: 50px;
+}
+
+th {
+  background-color: lightgray;
+  align-items: center;
+
+}
+
+td{
+  background-color: salmon;
+
+}
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: lightgrey;
+ 
+}
