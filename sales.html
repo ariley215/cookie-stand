@@ -6,7 +6,7 @@
 
 <head>
   <title>Sales Data: Pat's Salmon Cookies</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -21,17 +21,17 @@
   </header>
 
   <main>
-    <form id="addCookieStore">
+    <form id="addCookieStoreForm">
       <fieldset>
         <legend>Add a new location!</legend>
-        <label for="cookieStore">Location Name</label>
-        <input type="text" name="cookieStore" />
+        <label for="store">Location Name</label>
+        <input type="text" name="store" />
         <label for="minCust">Minimum Customers Per Hour</label>
-        <input type="text" name="minCust" />
+        <input type="number" name="minCust" />
         <label for="maxCust">Maximum Customers Per Hour</label>
-        <input type="text" name="maxCust" />
+        <input type="number" name="maxCust" />
         <label for="aveCookies">Average Cookie Per Sale</label>
-        <input type="text" name="aveCookies" />
+        <input type="number" name="aveCookies" step="0.1" required />
         <button type="text">Click here to add!</button>
       </fieldset>
     </form>
@@ -44,14 +44,14 @@
       </ul>
     </article>
     <section id="root" class="content"></section>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
   </main>
 
   <footer>
     &copy; 2023 Pat's Salmon Cookies
   </footer>
 
-  <script src="app.js"></script>
+ 
 </body>
 
 </html>
