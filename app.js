@@ -12,18 +12,18 @@ const limaLocation = new CookieStore('Lima', 2, 16, 4.6,'6am-7pm', 'Avenida Gran
 
 const locations = [seattleLocation, tokyoLocation, dubaiLocation, parisLocation, limaLocation]
 const tableElem = document.getElementById('data-table');
+const listElem = document.getElementById('locations-list');
+const cookieStoreForm = document.getElementById('addCookieStoreForm');
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', locationInfo); 
+function locationInfo() {
   // location info on main page
-  
-  const section = document.getElementById('locationsList');
-  
+
   for (let i = 0; i < locations.length; i++) {
     const location = locations[i]
-    console.log('section:', section);
    
     const locationDiv = document.createElement('div');
-    section.appendChild(locationDiv);
+    listElem.appendChild(locationDiv);
     locationDiv.className = 'locationsList';
     console.log('Loop iterarion:', i);
   
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
      contactElement.textContent = `Phone Number: ${location.contactInfo}`;
   
     }
-  });
+  };
 
 
 let cookiesSold = 0;
@@ -113,6 +113,26 @@ dailyTotalCell.textContent = `${dailyTotal} cookies`;
 locationsDailyTotal += dailyTotal;
 }
 
+
+
+cookieStoreForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit (event) {
+  event.preventDefault();
+  let store = event.target.elements.store.value;
+  let minCust = parseInt(event.target.elements.minCust.value);
+  const maxCust = parseInt(event.target.elements.maxCust.value);
+  const aveCookies = parseFloat(event.target.elements.aveCookies.value);
+
+  const newCookieStore = new CookieStore(store, minCust, maxCust, aveCookies);
+  newCookieStore.estimateSales();
+  cookieStoreForm.reset();
+  newCookieStore.render();
+  locations.push(newCookieStore);
+  renderfooterRow(tableElem);
+}
+
+
 //  Location Header Cell
 const container = document.getElementById('root')
 
@@ -136,11 +156,6 @@ function header(tableElem) {
   tableRow.appendChild(dailyTotalHeaderCell);
   dailyTotalHeaderCell.textContent = 'Daily Location Total'
 }
-
-
-
-
-
 
 header(tableElem);
 
@@ -197,5 +212,10 @@ limaLocation.render();
 
 
 renderfooterRow(tableElem);
+
+console.log('tableElem:', tableElem);
+console.log('listElem:', listElem);
+console.log('cookieStoreForm:', cookieStoreForm);
+
 
 
