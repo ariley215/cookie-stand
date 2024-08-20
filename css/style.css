@@ -3,7 +3,7 @@ body {
 }
 
 header {
-  background-color: black;
+  background-color: burlywood;
   height: 150px;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ header {
 }
 
 nav {
-  background-color: salmon;
+  background-color: lightblue;
   display: flex;
   height: 50px;
 }
@@ -37,7 +37,7 @@ a {
 }
 
 h1 {
-  color: salmon;
+  color: lightcoral;
   font-family: 'Righteous';
   font-style: italic;
   font-weight: 400;
@@ -68,7 +68,7 @@ h2 {
 }
 
 fieldset {
-  border: 1px solid salmon;
+  border: 1px solid lightcoral;
   margin: 20px;
   position: realtive;
 
@@ -82,7 +82,7 @@ legend {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  color: salmon;
+  color: lightcoral;
   border: 1px;
 
 }
@@ -97,20 +97,18 @@ table {
 }
 
 th {
-  background-color: lightgray;
+  background-color: lightblue;
   align-items: center;
 
 }
 
 td{
-  background-color: salmon;
+  background-color: burlywood;
 
 }
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
+  text-align: center;
+  height: 75px;
   background-color: lightgrey;
- 
+  padding-top: 75px
 }
